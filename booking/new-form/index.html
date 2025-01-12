@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart | Kasutto</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/other-style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet">
+    <!--Import Google - Nokora Font-->
+    <link href="https://fonts.googleapis.com/css2?family=Nokora:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="left">
+            <img class="logo" src="../../assets/img/logo-full.svg">
+            <div class="divider"></div>
+            <p>Booking Overview</p>
+        </div>
+        <div class="right">
+            <div class="progress-container">
+                <span class="progress-indicator completed"><i class="material-symbols-outlined">check</i></span>
+                <p class="progress-text active">Select Venue</p>
+            </div>
+            <div class="progress-line active"></div>
+            <div class="progress-container">
+                <span class="progress-indicator completed"><i class="material-symbols-outlined">check</i></span>
+                <p class="progress-text active">Select Date</p>
+            </div>
+            <div class="progress-line active"></div>
+            <div class="progress-container">
+                <span class="progress-indicator active">3</span>
+                <p class="progress-text active">Event Details</p>
+            </div>
+            <div class="progress-line"></div>
+            <div class="progress-container">
+                <span class="progress-indicator">4</span>
+                <p class="progress-text">Complete</p>
+            </div>
+        </div>
+    </div>
+    <div class="dashboard with-margin single">
+        <h2>Event/Programme Details</h2>
+        <p class="no-margin">Please fill in the event/programme details in the form below.</p>
+        <div class="dashboard internal no-margin">
+            <div class="left no-margin">
+                <div class="form">
+                    <div class="form-item">
+                        <p class="form-text">Event/Programme Name<span class="required">*</span></p>
+                        <div class="form-option outlined">
+                            <i class="material-symbols-outlined">alternate_email</i>
+                            <input type="email" placeholder="Enter event/programme name" value="Annual General Meeting 2025">
+                        </div>
+                    </div>
+                    <div class="form-item">
+                        <p class="form-text">Organizer name<span class="required">*</span></p>
+                        <div class="form-option outlined">
+                            <i class="material-symbols-outlined">alternate_email</i>
+                            <input type="email" placeholder="Enter organizer name" value="PEMBINA IIUM Chapter">
+                        </div>
+                    </div>
+                    <div class="form-item">
+                        <p class="form-text">Start date and time<span class="required">*</span></p>
+                        <div class="form-option outlined">
+                            <i class="material-symbols-outlined">alternate_email</i>
+                            <input type="datetime-local" title="Start Date" value="2025-01-24T13:00" min="2025-01-24T13:00" max="2025-01-24T22:00">
+                        </div>
+                    </div>
+                    <div class="form-item">
+                        <p class="form-text">End date and time<span class="required">*</span></p>
+                        <div class="form-option outlined">
+                            <i class="material-symbols-outlined">alternate_email</i>
+                            <input type="datetime-local" title="End Date" value="2025-01-24T18:00" min="2025-01-24T15:00" max="2025-01-24T22:00">
+                        </div>
+                    </div>
+                    <div class="form-item">
+                        <p class="form-text">Number of Participants<span class="required">*</span></p>
+                        <div class="form-option outlined">
+                            <i class="material-symbols-outlined">alternate_email</i>
+                            <input type="text" title="Number of Participants" value="250">
+                        </div>
+                    </div>
+                    <div class="form-item">
+                        <p class="form-text">Letter of Approval<span class="required">*</span></p>
+                        <div class="form-option outlined file">
+                            <i class="material-symbols-outlined">alternate_email</i>
+                            <input type="file" title="Number of Participants">
+                        </div>
+                    </div>
+                    <div class="form-item">
+                        <div class="form-option checkbox">
+                            <input type="checkbox" id="save-info">
+                            <label for="save-info">The details that I am submitting is correct and has been approved by the management of the university.</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="right no-margin">
+                <p class="text bold">Review your booking details</p>
+                <div class="cart">
+                    <div class="cart-item active">
+                        <div class="cart-image">
+                            <i class="material-symbols-outlined">room_preferences</i>
+                        </div>
+                        <div class="cart-details">
+                            <p class="cart-name">Experimental Hall</p>
+                            <p class="cart-size">Managed by: Residential and Services Department IIUM</p>
+                            <p class="cart-quantity text green">Available</p>
+                            <p class="cart-price">24/01/2025, 01.00 PM - 06.00 PM</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="checkout">
+                    <a href="../complete" class="button primary">Submit</a>
+                    <a href="../select-date/" class="button secondary">Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

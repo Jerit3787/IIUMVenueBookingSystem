@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart | Kasutto</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/other-style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet">
+    <!--Import Google - Nokora Font-->
+    <link href="https://fonts.googleapis.com/css2?family=Nokora:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="left">
+            <img class="logo" src="../../assets/img/logo-full.svg">
+            <div class="divider"></div>
+            <p>Booking Overview</p>
+        </div>
+        <div class="right">
+            <div class="progress-container">
+                <span class="progress-indicator completed"><i class="material-symbols-outlined">check</i></span>
+                <p class="progress-text active">Select Venue</p>
+            </div>
+            <div class="progress-line active"></div>
+            <div class="progress-container">
+                <span class="progress-indicator active">2</span>
+                <p class="progress-text active">Select Date</p>
+            </div>
+            <div class="progress-line"></div>
+            <div class="progress-container">
+                <span class="progress-indicator">2</span>
+                <p class="progress-text">Event Details</p>
+            </div>
+            <div class="progress-line"></div>
+            <div class="progress-container">
+                <span class="progress-indicator">3</span>
+                <p class="progress-text">Complete Order</p>
+            </div>
+        </div>
+    </div>
+    <div class="dashboard with-margin single">
+        <h2>Venue Date and Time</h2>
+        <p>Select a date to see available times</p>
+        <div class="calendar">
+            <div class="calendar-left">
+                <div class="top-bar">
+                    <a><i class="material-symbols-outlined">arrow_left</i></a>
+                    <p>January 2024</p>
+                </div>
+                <div class="day-bar">
+                    <p class="text bold">S</p>
+                    <p class="text bold">M</p>
+                    <p class="text bold">T</p>
+                    <p class="text bold">W</p>
+                    <p class="text bold">T</p>
+                    <p class="text bold">F</p>
+                    <p class="text bold">S</p>
+                </div>
+                <div class="week-bar">
+                    <a></a>
+                    <a></a>
+                    <a></a>
+                    <a>1</a>
+                    <a>2</a>
+                    <a>3</a>
+                    <a>4</a>
+                </div>
+                <div class="week-bar">
+                    <a>5</a>
+                    <a>6</a>
+                    <a>7</a>
+                    <a>8</a>
+                    <a>9</a>
+                    <a>10</a>
+                    <a>11</a>
+                </div>
+                <div class="week-bar">
+                    <a>12</a>
+                    <a>13</a>
+                    <a>14</a>
+                    <a>15</a>
+                    <a>16</a>
+                    <a>17</a>
+                    <a>18</a>
+                </div>
+                <div class="week-bar">
+                    <a>19</a>
+                    <a>20</a>
+                    <a>21</a>
+                    <a>22</a>
+                    <a>23</a>
+                    <a class="active">24</a>
+                    <a class="not-available">25</a>
+                </div>
+                <div class="week-bar">
+                    <a class="not-available">26</a>
+                    <a class="booked">27</a>
+                    <a>28</a>
+                    <a>29</a>
+                    <a>30</a>
+                    <a>31</a>
+                    <a></a>
+                </div>
+                <div class="bottom-bar">
+                    <div class="not-available-dot"></div>
+                    <p class="text margin-right-2">Not Available</p>
+                    <div class="booked-dot"></div>
+                    <p class="text margin-right-2">Fully Booked</p>
+                    <div class="active-dot"></div>
+                    <p>Selected</p>
+                </div>
+            </div>
+            <div class="calendar-right">
+                <p class="text bold">Available Times</p>
+                <div class="cart">
+                    <div class="cart-item">
+                        <div class="cart-image">
+                            <i class="material-symbols-outlined">room_preferences</i>
+                        </div>
+                        <div class="cart-details">
+                            <p class="cart-name">Experimental Hall</p>
+                            <p class="cart-size">Managed by: Residential and Services Department IIUM</p>
+                            <p class="cart-quantity text red">Booked</p>
+                            <p class="cart-price">08.00 AM - 12.00 PM</p>
+                        </div>
+                    </div>
+                    <div class="cart-item active">
+                        <div class="cart-image">
+                            <i class="material-symbols-outlined">room_preferences</i>
+                        </div>
+                        <div class="cart-details">
+                            <p class="cart-name">Experimental Hall</p>
+                            <p class="cart-size">Managed by: Residential and Services Department IIUM</p>
+                            <p class="cart-quantity text green">Available</p>
+                            <p class="cart-price">01.00 PM - 10.00 PM</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="navigation-button">
+            <a href="" class="button secondary">Cancel</a>
+            <a href="../new-form/" class="button primary">Continue</a>
+        </div>
+    </div>
+</body>
+
+</html>
