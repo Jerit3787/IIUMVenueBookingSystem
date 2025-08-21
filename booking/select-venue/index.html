@@ -193,11 +193,73 @@
                     </div>
                 </div>
                 <div class="checkout">
-                    <a href="../select-date/" class="button primary">Continue</a>
+                    <button id="continueBtn" class="button primary" onclick="continueToDateSelection()" disabled>Continue</button>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        let selectedVenue = null;
+
+        function selectVenue(venueElement, venueData) {
+            // Remove active class from all venues
+            document.querySelectorAll('.cart-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Add active class to selected venue
+            venueElement.classList.add('active');
+            
+            // Store selected venue data
+            selectedVenue = venueData;
+            
+            // Enable continue button
+            document.getElementById('continueBtn').disabled = false;
+            
+            // Store venue selection in localStorage
+            localStorage.setItem('selectedVenue', JSON.stringify(venueData));
+        }
+
+        function continueToDateSelection() {
+            if (selectedVenue) {
+                window.location.href = '../select-date/';
+            } else {
+                alert('Please select a venue before continuing.');
+            }
+        }
+
+        // Add click event listeners to venue items
+        document.addEventListener('DOMContentLoaded', function() {
+            const venueItems = document.querySelectorAll('.cart-item');
+            
+            venueItems.forEach((item, index) => {
+                const venueName = item.querySelector('.cart-name').textContent;
+                const venueCapacity = item.querySelector('.cart-size').textContent;
+                const venueRequirements = item.querySelector('.text.red')?.textContent || '';
+                
+                const venueData = {
+                    id: index + 1,
+                    name: venueName,
+                    capacity: venueCapacity,
+                    requirements: venueRequirements
+                };
+                
+                item.addEventListener('click', () => selectVenue(item, venueData));
+                item.style.cursor = 'pointer';
+            });
+
+            // Check if venue was previously selected
+            const savedVenue = localStorage.getItem('selectedVenue');
+            if (savedVenue) {
+                const venueData = JSON.parse(savedVenue);
+                const venueItems = document.querySelectorAll('.cart-item');
+                venueItems[venueData.id - 1]?.classList.add('active');
+                selectedVenue = venueData;
+                document.getElementById('continueBtn').disabled = false;
+            }
+        });
+    </script>
 </body>
 
 </html>

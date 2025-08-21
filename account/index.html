@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account | IIUM Venue Booking System</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/other-style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet">
+    <!--Import Google - Nokora Font-->
+    <link href="https://fonts.googleapis.com/css2?family=Nokora:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="left">
+            <img class="logo" src="../assets/img/logo-full.svg">
+            <div class="links">
+                <a href="../index.html">Home</a>
+                <a href="../booking/">Bookings</a>
+                <a href="../support/">Support</a>
+                <a href="../about/">About</a>
+            </div>
+        </div>
+        <div class="right">
+            <div class="search-box">
+                <i class="material-symbols-outlined">search</i>
+                <input type="text" placeholder="Search...">
+            </div>
+            <a class="nav-button active" href="../account/">
+                <i class="material-symbols-outlined">account_circle</i>
+            </a>
+        </div>
+    </div>
+
+    <div class="dashboard with-margin">
+        <div class="account-header">
+            <div class="account-info">
+                <div class="account-avatar">
+                    <i class="material-symbols-outlined">account_circle</i>
+                </div>
+                <div class="account-details">
+                    <h2>MOHAMMAD DANISH HAKIM BIN MOHD NASIR</h2>
+                    <p class="matric-number">Matric No: 2319439</p>
+                    <p class="kulliyah">Kulliyyah of Information and Communication Technology (KICT)</p>
+                    <p class="account-status">Status: Active Student</p>
+                </div>
+            </div>
+            <div class="account-actions">
+                <button class="button secondary" onclick="editProfile()">Edit Profile</button>
+                <button class="button danger" onclick="logout()">Logout</button>
+            </div>
+        </div>
+
+        <div class="account-tabs">
+            <button class="tab-button active" onclick="showAccountTab('profile')">Profile</button>
+            <button class="tab-button" onclick="showAccountTab('bookings')">My Bookings</button>
+            <button class="tab-button" onclick="showAccountTab('settings')">Settings</button>
+            <button class="tab-button" onclick="showAccountTab('notifications')">Notifications</button>
+        </div>
+
+        <div id="profile-tab" class="account-tab-content active">
+            <div class="profile-section">
+                <h3>Personal Information</h3>
+                <div class="profile-form">
+                    <div class="profile-row">
+                        <div class="form-item">
+                            <p class="form-text">Full Name</p>
+                            <div class="form-option outlined readonly">
+                                <i class="material-symbols-outlined">person</i>
+                                <input type="text" value="MOHAMMAD DANISH HAKIM BIN MOHD NASIR" readonly>
+                            </div>
+                        </div>
+                        <div class="form-item">
+                            <p class="form-text">Matric Number</p>
+                            <div class="form-option outlined readonly">
+                                <i class="material-symbols-outlined">badge</i>
+                                <input type="text" value="2319439" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile-row">
+                        <div class="form-item">
+                            <p class="form-text">Email Address</p>
+                            <div class="form-option outlined">
+                                <i class="material-symbols-outlined">email</i>
+                                <input type="email" value="danish.hakim04@gmail.com">
+                            </div>
+                        </div>
+                        <div class="form-item">
+                            <p class="form-text">Phone Number</p>
+                            <div class="form-option outlined">
+                                <i class="material-symbols-outlined">phone</i>
+                                <input type="tel" value="+6019-7746860">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile-row">
+                        <div class="form-item">
+                            <p class="form-text">Kulliyyah</p>
+                            <div class="form-option outlined readonly">
+                                <i class="material-symbols-outlined">school</i>
+                                <input type="text" value="KICT" readonly>
+                            </div>
+                        </div>
+                        <div class="form-item">
+                            <p class="form-text">Year of Study</p>
+                            <div class="form-option outlined readonly">
+                                <i class="material-symbols-outlined">calendar_today</i>
+                                <input type="text" value="Year 3" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile-actions">
+                        <button class="button primary" onclick="saveProfile()">Save Changes</button>
+                        <button class="button secondary" onclick="resetProfile()">Reset</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-section">
+                <h3>Account Statistics</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <i class="material-symbols-outlined">event</i>
+                        <div class="stat-info">
+                            <h4>5</h4>
+                            <p>Total Bookings</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="material-symbols-outlined">check_circle</i>
+                        <div class="stat-info">
+                            <h4>4</h4>
+                            <p>Successful Events</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="material-symbols-outlined">schedule</i>
+                        <div class="stat-info">
+                            <h4>1</h4>
+                            <p>Pending Approval</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <i class="material-symbols-outlined">star</i>
+                        <div class="stat-info">
+                            <h4>4.8</h4>
+                            <p>Avg. Rating</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="bookings-tab" class="account-tab-content">
+            <div class="bookings-summary">
+                <h3>My Bookings Summary</h3>
+                <div class="booking-quick-stats">
+                    <div class="quick-stat">
+                        <span class="stat-number">2</span>
+                        <span class="stat-label">Upcoming</span>
+                    </div>
+                    <div class="quick-stat">
+                        <span class="stat-number">1</span>
+                        <span class="stat-label">Pending</span>
+                    </div>
+                    <div class="quick-stat">
+                        <span class="stat-number">2</span>
+                        <span class="stat-label">Completed</span>
+                    </div>
+                </div>
+                <a href="../booking/" class="button primary">View All Bookings</a>
+            </div>
+
+            <div class="recent-bookings">
+                <h3>Recent Bookings</h3>
+                <div class="booking-list-mini">
+                    <div class="booking-item-mini confirmed">
+                        <div class="booking-status-mini">
+                            <i class="material-symbols-outlined">check_circle</i>
+                        </div>
+                        <div class="booking-info-mini">
+                            <h4>Annual General Meeting 2025</h4>
+                            <p>Experimental Hall • Jan 24, 2025</p>
+                        </div>
+                    </div>
+                    <div class="booking-item-mini pending">
+                        <div class="booking-status-mini">
+                            <i class="material-symbols-outlined">schedule</i>
+                        </div>
+                        <div class="booking-info-mini">
+                            <h4>Graduation Ceremony 2025</h4>
+                            <p>Main Auditorium • Mar 20, 2025</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="settings-tab" class="account-tab-content">
+            <div class="settings-section">
+                <h3>Account Settings</h3>
+                <div class="settings-form">
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Email Notifications</h4>
+                            <p>Receive email updates about your bookings</p>
+                        </div>
+                        <div class="setting-control">
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>SMS Notifications</h4>
+                            <p>Receive SMS alerts for important updates</p>
+                        </div>
+                        <div class="setting-control">
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Marketing Communications</h4>
+                            <p>Receive information about new features and events</p>
+                        </div>
+                        <div class="setting-control">
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h3>Privacy Settings</h3>
+                <div class="settings-form">
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Profile Visibility</h4>
+                            <p>Make your profile visible to other users</p>
+                        </div>
+                        <div class="setting-control">
+                            <label class="switch">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h4>Booking History Visibility</h4>
+                            <p>Allow administrators to view your booking history</p>
+                        </div>
+                        <div class="setting-control">
+                            <label class="switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="settings-section">
+                <h3>Security</h3>
+                <div class="security-actions">
+                    <button class="button secondary" onclick="changePassword()">Change Password</button>
+                    <button class="button secondary" onclick="enable2FA()">Enable Two-Factor Authentication</button>
+                    <button class="button danger" onclick="deleteAccount()">Delete Account</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="notifications-tab" class="account-tab-content">
+            <div class="notifications-section">
+                <h3>Notifications</h3>
+                <div class="notifications-list">
+                    <div class="notification-item unread">
+                        <div class="notification-icon">
+                            <i class="material-symbols-outlined">check_circle</i>
+                        </div>
+                        <div class="notification-content">
+                            <h4>Booking Confirmed</h4>
+                            <p>Your booking for Annual General Meeting 2025 has been confirmed.</p>
+                            <span class="notification-time">2 hours ago</span>
+                        </div>
+                        <div class="notification-actions">
+                            <button onclick="markAsRead(this)">Mark as Read</button>
+                        </div>
+                    </div>
+                    <div class="notification-item">
+                        <div class="notification-icon">
+                            <i class="material-symbols-outlined">schedule</i>
+                        </div>
+                        <div class="notification-content">
+                            <h4>Booking Under Review</h4>
+                            <p>Your booking for Graduation Ceremony 2025 is under review.</p>
+                            <span class="notification-time">1 day ago</span>
+                        </div>
+                    </div>
+                    <div class="notification-item">
+                        <div class="notification-icon">
+                            <i class="material-symbols-outlined">info</i>
+                        </div>
+                        <div class="notification-content">
+                            <h4>System Maintenance</h4>
+                            <p>Scheduled maintenance on January 30, 2025 from 2:00 AM to 4:00 AM.</p>
+                            <span class="notification-time">3 days ago</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="notifications-actions">
+                    <button class="button secondary" onclick="markAllAsRead()">Mark All as Read</button>
+                    <button class="button secondary" onclick="clearNotifications()">Clear All</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showAccountTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.account-tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all buttons
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName + '-tab').classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+
+        function editProfile() {
+            alert('Edit profile functionality would open a form here.');
+        }
+
+        function logout() {
+            if (confirm('Are you sure you want to logout?')) {
+                alert('Logging out...');
+                // In a real implementation, this would redirect to login page
+                window.location.href = '../index.html';
+            }
+        }
+
+        function saveProfile() {
+            alert('Profile saved successfully!');
+        }
+
+        function resetProfile() {
+            if (confirm('Reset all changes?')) {
+                location.reload();
+            }
+        }
+
+        function changePassword() {
+            alert('Change password functionality would open here.');
+        }
+
+        function enable2FA() {
+            alert('Two-factor authentication setup would start here.');
+        }
+
+        function deleteAccount() {
+            if (confirm('Are you sure you want to delete your account? This action cannot be undone.')) {
+                alert('Account deletion request submitted.');
+            }
+        }
+
+        function markAsRead(button) {
+            const notificationItem = button.closest('.notification-item');
+            notificationItem.classList.remove('unread');
+            button.style.display = 'none';
+        }
+
+        function markAllAsRead() {
+            document.querySelectorAll('.notification-item').forEach(item => {
+                item.classList.remove('unread');
+            });
+            document.querySelectorAll('.notification-actions button').forEach(button => {
+                if (button.textContent === 'Mark as Read') {
+                    button.style.display = 'none';
+                }
+            });
+        }
+
+        function clearNotifications() {
+            if (confirm('Clear all notifications?')) {
+                document.querySelector('.notifications-list').innerHTML = '<p>No notifications</p>';
+            }
+        }
+    </script>
+</body>
+
+</html>
