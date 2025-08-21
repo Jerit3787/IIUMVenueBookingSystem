@@ -143,12 +143,128 @@
                     </div>
                 </div>
                 <div class="checkout" style="width: 100%;">
-                    <a href="../new-form/" class="button primary" style="width: calc(100% - 8px);">Continue</a>
+                    <button id="continueBtn" class="button primary" style="width: calc(100% - 8px);" onclick="continueToEventDetails()" disabled>Continue</button>
                     <a href="../select-venue/" class="button secondary" style="width: calc(100% - 8px);">Back</a>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        let selectedTimeSlot = null;
+        let selectedDate = null;
+
+        function selectTimeSlot(timeElement, timeData) {
+            // Only allow selection of available slots
+            if (timeElement.classList.contains('active') || timeElement.querySelector('.text.red')) {
+                return; // Don't select booked or unavailable slots
+            }
+            
+            // Remove active class from all time slots
+            document.querySelectorAll('.cart-item').forEach(item => {
+                if (!item.querySelector('.text.red')) { // Don't remove from unavailable slots
+                    item.classList.remove('active');
+                }
+            });
+            
+            // Add active class to selected time slot
+            timeElement.classList.add('active');
+            
+            // Store selected time slot data
+            selectedTimeSlot = timeData;
+            
+            // Enable continue button
+            document.getElementById('continueBtn').disabled = false;
+            
+            // Store time selection in localStorage
+            localStorage.setItem('selectedTimeSlot', JSON.stringify(timeData));
+            
+            // Update venue details with selected time
+            updateVenueDisplay();
+        }
+
+        function updateVenueDisplay() {
+            const savedVenue = localStorage.getItem('selectedVenue');
+            if (savedVenue && selectedTimeSlot) {
+                const venueData = JSON.parse(savedVenue);
+                
+                // Update the venue display in the sidebar with selected time
+                const venueItem = document.querySelector('.cart-item.active');
+                if (venueItem) {
+                    const priceElement = venueItem.querySelector('.cart-price');
+                    priceElement.textContent = `${selectedDate || '24/01/2025'}, ${selectedTimeSlot.time}`;
+                }
+            }
+        }
+
+        function continueToEventDetails() {
+            if (selectedTimeSlot) {
+                window.location.href = '../new-form/';
+            } else {
+                alert('Please select a time slot before continuing.');
+            }
+        }
+
+        // Simulate calendar functionality
+        function selectCalendarDate(date) {
+            selectedDate = date;
+            // In a real implementation, this would fetch available time slots for the selected date
+            console.log('Selected date:', date);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load selected venue from previous step
+            const savedVenue = localStorage.getItem('selectedVenue');
+            if (savedVenue) {
+                const venueData = JSON.parse(savedVenue);
+                // Update venue display
+                const venueNameElement = document.querySelector('.cart-name');
+                const venueSizeElement = document.querySelector('.cart-size');
+                if (venueNameElement && venueSizeElement) {
+                    venueNameElement.textContent = venueData.name;
+                    venueSizeElement.textContent = venueData.capacity;
+                }
+            }
+
+            // Add click event listeners to time slot items
+            const timeItems = document.querySelectorAll('.cart-item');
+            
+            timeItems.forEach((item, index) => {
+                const timeText = item.querySelector('.cart-price')?.textContent;
+                const statusText = item.querySelector('.cart-quantity')?.textContent;
+                
+                if (timeText && statusText === 'Available') {
+                    const timeData = {
+                        id: index + 1,
+                        time: timeText,
+                        status: statusText
+                    };
+                    
+                    item.addEventListener('click', () => selectTimeSlot(item, timeData));
+                    item.style.cursor = 'pointer';
+                }
+            });
+
+            // Check if time slot was previously selected
+            const savedTimeSlot = localStorage.getItem('selectedTimeSlot');
+            if (savedTimeSlot) {
+                const timeData = JSON.parse(savedTimeSlot);
+                const timeItems = document.querySelectorAll('.cart-item');
+                timeItems[timeData.id - 1]?.classList.add('active');
+                selectedTimeSlot = timeData;
+                document.getElementById('continueBtn').disabled = false;
+            }
+
+            // Simple calendar interaction (placeholder)
+            document.querySelectorAll('.calendar-day').forEach(day => {
+                day.addEventListener('click', function() {
+                    document.querySelectorAll('.calendar-day').forEach(d => d.classList.remove('selected'));
+                    this.classList.add('selected');
+                    selectCalendarDate(this.textContent);
+                });
+            });
+        });
+    </script>
 </body>
 
 </html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookings | IIUM Venue Booking System</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/other-style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet">
+    <!--Import Google - Nokora Font-->
+    <link href="https://fonts.googleapis.com/css2?family=Nokora:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="left">
+            <img class="logo" src="../assets/img/logo-full.svg">
+            <div class="links">
+                <a href="../index.html">Home</a>
+                <a href="../booking/" class="active">Bookings</a>
+                <a href="../support/">Support</a>
+                <a href="../about/">About</a>
+            </div>
+        </div>
+        <div class="right">
+            <div class="search-box">
+                <i class="material-symbols-outlined">search</i>
+                <input type="text" placeholder="Search bookings...">
+            </div>
+            <a class="nav-button" href="../account/">
+                <i class="material-symbols-outlined">account_circle</i>
+            </a>
+        </div>
+    </div>
+
+    <div class="dashboard with-margin">
+        <div class="booking-header">
+            <h2>Venue Bookings</h2>
+            <p>Manage your venue bookings and create new reservations</p>
+        </div>
+
+        <div class="booking-actions">
+            <a href="./select-venue/" class="button primary large">
+                <i class="material-symbols-outlined">add</i>
+                New Booking
+            </a>
+            <button class="button secondary" onclick="refreshBookings()">
+                <i class="material-symbols-outlined">refresh</i>
+                Refresh
+            </button>
+        </div>
+
+        <div class="booking-tabs">
+            <button class="tab-button active" onclick="showTab('current')">Current Bookings</button>
+            <button class="tab-button" onclick="showTab('pending')">Pending Approval</button>
+            <button class="tab-button" onclick="showTab('history')">Booking History</button>
+        </div>
+
+        <div id="current-tab" class="tab-content active">
+            <div class="booking-list">
+                <div class="booking-item confirmed">
+                    <div class="booking-status">
+                        <i class="material-symbols-outlined">check_circle</i>
+                        <span class="status-text">Confirmed</span>
+                    </div>
+                    <div class="booking-details">
+                        <h3>Annual General Meeting 2025</h3>
+                        <p class="venue-name">Experimental Hall</p>
+                        <p class="booking-date">January 24, 2025 • 1:00 PM - 6:00 PM</p>
+                        <p class="organizer">Organized by: PEMBINA IIUM Chapter</p>
+                        <p class="participants">Expected participants: 250</p>
+                    </div>
+                    <div class="booking-actions-mini">
+                        <button class="button small secondary" onclick="viewBooking('booking1')">View Details</button>
+                        <button class="button small danger" onclick="cancelBooking('booking1')">Cancel</button>
+                    </div>
+                </div>
+
+                <div class="booking-item confirmed">
+                    <div class="booking-status">
+                        <i class="material-symbols-outlined">check_circle</i>
+                        <span class="status-text">Confirmed</span>
+                    </div>
+                    <div class="booking-details">
+                        <h3>KICT Student Conference</h3>
+                        <p class="venue-name">Mini Auditorium</p>
+                        <p class="booking-date">February 15, 2025 • 9:00 AM - 5:00 PM</p>
+                        <p class="organizer">Organized by: KICT Student Society</p>
+                        <p class="participants">Expected participants: 120</p>
+                    </div>
+                    <div class="booking-actions-mini">
+                        <button class="button small secondary" onclick="viewBooking('booking2')">View Details</button>
+                        <button class="button small danger" onclick="cancelBooking('booking2')">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="pending-tab" class="tab-content">
+            <div class="booking-list">
+                <div class="booking-item pending">
+                    <div class="booking-status">
+                        <i class="material-symbols-outlined">schedule</i>
+                        <span class="status-text">Pending Approval</span>
+                    </div>
+                    <div class="booking-details">
+                        <h3>Graduation Ceremony 2025</h3>
+                        <p class="venue-name">Main Auditorium</p>
+                        <p class="booking-date">March 20, 2025 • 8:00 AM - 12:00 PM</p>
+                        <p class="organizer">Organized by: Academic Affairs</p>
+                        <p class="participants">Expected participants: 800</p>
+                        <p class="submission-date">Submitted: January 15, 2025</p>
+                    </div>
+                    <div class="booking-actions-mini">
+                        <button class="button small secondary" onclick="viewBooking('booking3')">View Details</button>
+                        <button class="button small warning" onclick="editBooking('booking3')">Edit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="history-tab" class="tab-content">
+            <div class="booking-list">
+                <div class="booking-item completed">
+                    <div class="booking-status">
+                        <i class="material-symbols-outlined">history</i>
+                        <span class="status-text">Completed</span>
+                    </div>
+                    <div class="booking-details">
+                        <h3>Islamic Finance Seminar</h3>
+                        <p class="venue-name">Banquet Hall</p>
+                        <p class="booking-date">December 10, 2024 • 2:00 PM - 6:00 PM</p>
+                        <p class="organizer">Organized by: KENMS</p>
+                        <p class="participants">Participants: 300</p>
+                    </div>
+                    <div class="booking-actions-mini">
+                        <button class="button small secondary" onclick="viewBooking('booking4')">View Details</button>
+                        <button class="button small primary" onclick="rebookVenue('booking4')">Book Again</button>
+                    </div>
+                </div>
+
+                <div class="booking-item cancelled">
+                    <div class="booking-status">
+                        <i class="material-symbols-outlined">cancel</i>
+                        <span class="status-text">Cancelled</span>
+                    </div>
+                    <div class="booking-details">
+                        <h3>Cultural Night</h3>
+                        <p class="venue-name">Experimental Hall</p>
+                        <p class="booking-date">November 25, 2024 • 7:00 PM - 11:00 PM</p>
+                        <p class="organizer">Organized by: Student Affairs</p>
+                        <p class="participants">Expected participants: 200</p>
+                        <p class="cancellation-reason">Cancelled due to unforeseen circumstances</p>
+                    </div>
+                    <div class="booking-actions-mini">
+                        <button class="button small secondary" onclick="viewBooking('booking5')">View Details</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="booking-summary">
+            <div class="summary-card">
+                <h4>Booking Statistics</h4>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-number">2</span>
+                        <span class="stat-label">Active Bookings</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">1</span>
+                        <span class="stat-label">Pending Approval</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">5</span>
+                        <span class="stat-label">Total Bookings</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">4</span>
+                        <span class="stat-label">Successful Events</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all buttons
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.getElementById(tabName + '-tab').classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+
+        function refreshBookings() {
+            // Add refresh functionality
+            location.reload();
+        }
+
+        function viewBooking(bookingId) {
+            alert('View booking details for: ' + bookingId);
+            // In a real implementation, this would navigate to a detailed view
+        }
+
+        function cancelBooking(bookingId) {
+            if (confirm('Are you sure you want to cancel this booking?')) {
+                alert('Booking ' + bookingId + ' has been cancelled.');
+                // In a real implementation, this would make an API call
+            }
+        }
+
+        function editBooking(bookingId) {
+            alert('Edit booking: ' + bookingId);
+            // In a real implementation, this would navigate to edit form
+        }
+
+        function rebookVenue(bookingId) {
+            window.location.href = './select-venue/';
+        }
+    </script>
+</body>
+
+</html>

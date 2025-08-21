@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support | IIUM Venue Booking System</title>
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/other-style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet">
+    <!--Import Google - Nokora Font-->
+    <link href="https://fonts.googleapis.com/css2?family=Nokora:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="left">
+            <img class="logo" src="../assets/img/logo-full.svg">
+            <div class="links">
+                <a href="../index.html">Home</a>
+                <a href="../booking/">Bookings</a>
+                <a href="../support/" class="active">Support</a>
+                <a href="../about/">About</a>
+            </div>
+        </div>
+        <div class="right">
+            <div class="search-box">
+                <i class="material-symbols-outlined">search</i>
+                <input type="text" placeholder="Search FAQ...">
+            </div>
+            <a class="nav-button" href="../account/">
+                <i class="material-symbols-outlined">account_circle</i>
+            </a>
+        </div>
+    </div>
+
+    <div class="dashboard with-margin">
+        <div class="support-header">
+            <h2>Support Center</h2>
+            <p>Get help with your venue booking questions and technical issues</p>
+        </div>
+
+        <div class="support-options">
+            <div class="support-card">
+                <i class="material-symbols-outlined">help</i>
+                <h3>Frequently Asked Questions</h3>
+                <p>Find answers to common questions about venue booking</p>
+                <button class="button secondary" onclick="showFAQ()">View FAQ</button>
+            </div>
+            <div class="support-card">
+                <i class="material-symbols-outlined">email</i>
+                <h3>Contact Support</h3>
+                <p>Send us a message and we'll get back to you within 24 hours</p>
+                <button class="button secondary" onclick="showContactForm()">Contact Us</button>
+            </div>
+            <div class="support-card">
+                <i class="material-symbols-outlined">phone</i>
+                <h3>Call Support</h3>
+                <p>Speak directly with our support team during office hours</p>
+                <a href="tel:+60361964000" class="button secondary">Call Now</a>
+            </div>
+        </div>
+
+        <div id="faq-section" class="support-section">
+            <h3>Frequently Asked Questions</h3>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        How do I book a venue?
+                        <i class="material-symbols-outlined">expand_more</i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>To book a venue, follow these steps:</p>
+                        <ol>
+                            <li>Click "New Booking" from the Bookings page</li>
+                            <li>Select your preferred venue from the available options</li>
+                            <li>Choose your date and time slot</li>
+                            <li>Fill in event details and upload required documents</li>
+                            <li>Submit your booking for approval</li>
+                        </ol>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        What documents do I need to submit?
+                        <i class="material-symbols-outlined">expand_more</i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Required documents typically include:</p>
+                        <ul>
+                            <li>Letter of approval from your department/organization</li>
+                            <li>Event proposal or program details</li>
+                            <li>List of participants (for large events)</li>
+                            <li>Insurance documentation (if required)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        How long does the approval process take?
+                        <i class="material-symbols-outlined">expand_more</i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>The approval process typically takes 3-5 business days. For urgent requests or large events, please contact our support team directly.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        Can I cancel or modify my booking?
+                        <i class="material-symbols-outlined">expand_more</i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes, you can cancel or modify your booking:</p>
+                        <ul>
+                            <li><strong>Pending bookings:</strong> Can be modified or cancelled anytime</li>
+                            <li><strong>Confirmed bookings:</strong> Must be cancelled at least 48 hours in advance</li>
+                            <li><strong>Modifications:</strong> Subject to venue availability</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        What are the venue capacity limits?
+                        <i class="material-symbols-outlined">expand_more</i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Our venue capacities are:</p>
+                        <ul>
+                            <li><strong>Main Auditorium:</strong> 500-850 participants</li>
+                            <li><strong>Banquet Hall:</strong> 350 participants</li>
+                            <li><strong>Experimental Hall:</strong> 150-260 participants</li>
+                            <li><strong>Mini Auditorium:</strong> 50-140 participants</li>
+                            <li><strong>Multi Purpose Rooms:</strong> 40-100 participants</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFAQ(this)">
+                        Are there any booking fees?
+                        <i class="material-symbols-outlined">expand_more</i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Booking fees vary by venue and event type:</p>
+                        <ul>
+                            <li><strong>IIUM Events:</strong> Free for university-sponsored events</li>
+                            <li><strong>Student Organizations:</strong> Subsidized rates available</li>
+                            <li><strong>External Events:</strong> Commercial rates apply</li>
+                        </ul>
+                        <p>Contact our support team for detailed pricing information.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="contact-section" class="support-section">
+            <h3>Contact Support</h3>
+            <div class="contact-form">
+                <form id="supportForm" onsubmit="submitSupportForm(event)">
+                    <div class="form-item">
+                        <p class="form-text">Your Name<span class="required">*</span></p>
+                        <div class="form-option outlined">
+                            <i class="material-symbols-outlined">person</i>
+                            <input type="text" name="name" placeholder="Enter your full name" required>
+                        </div>
+                    </div>
+                    <div class="form-item">
+                        <p class="form-text">Email Address<span class="required">*</span></p>
+                        <div class="form-option outlined">
+                            <i class="material-symbols-outlined">email</i>
+                            <input type="email" name="email" placeholder="Enter your email address" required>
+                        </div>
+                    </div>
+                    <div class="form-item">
+                        <p class="form-text">Subject<span class="required">*</span></p>
+                        <div class="form-option outlined">
+                            <i class="material-symbols-outlined">subject</i>
+                            <select name="subject" required>
+                                <option value="">Select a topic</option>
+                                <option value="booking-help">Booking Assistance</option>
+                                <option value="technical-issue">Technical Issue</option>
+                                <option value="venue-inquiry">Venue Inquiry</option>
+                                <option value="billing">Billing Question</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-item">
+                        <p class="form-text">Message<span class="required">*</span></p>
+                        <div class="form-option outlined">
+                            <i class="material-symbols-outlined">message</i>
+                            <textarea name="message" placeholder="Describe your issue or question..." rows="5" required></textarea>
+                        </div>
+                    </div>
+                    <div class="form-item">
+                        <p class="form-text">Booking ID (if applicable)</p>
+                        <div class="form-option outlined">
+                            <i class="material-symbols-outlined">confirmation_number</i>
+                            <input type="text" name="bookingId" placeholder="Enter booking ID if this relates to an existing booking">
+                        </div>
+                    </div>
+                    <button type="submit" class="button primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="support-contact-info">
+            <h3>Other Ways to Reach Us</h3>
+            <div class="contact-methods">
+                <div class="contact-method">
+                    <i class="material-symbols-outlined">schedule</i>
+                    <h4>Office Hours</h4>
+                    <p>Monday - Friday: 8:00 AM - 5:00 PM<br>
+                    Saturday: 8:00 AM - 12:00 PM<br>
+                    Sunday: Closed</p>
+                </div>
+                <div class="contact-method">
+                    <i class="material-symbols-outlined">location_on</i>
+                    <h4>Office Location</h4>
+                    <p>Administrative Building<br>
+                    International Islamic University Malaysia<br>
+                    Jalan Gombak, 53100 Kuala Lumpur</p>
+                </div>
+                <div class="contact-method">
+                    <i class="material-symbols-outlined">email</i>
+                    <h4>Email Support</h4>
+                    <p>venue@iium.edu.my<br>
+                    support@iium.edu.my</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showFAQ() {
+            document.getElementById('faq-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function showContactForm() {
+            document.getElementById('contact-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function toggleFAQ(button) {
+            const faqItem = button.parentElement;
+            const answer = faqItem.querySelector('.faq-answer');
+            const icon = button.querySelector('i');
+            
+            faqItem.classList.toggle('active');
+            
+            if (faqItem.classList.contains('active')) {
+                answer.style.display = 'block';
+                icon.textContent = 'expand_less';
+            } else {
+                answer.style.display = 'none';
+                icon.textContent = 'expand_more';
+            }
+        }
+
+        function submitSupportForm(event) {
+            event.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(event.target);
+            const formObject = Object.fromEntries(formData);
+            
+            // Simulate form submission
+            alert('Thank you for contacting us! We will get back to you within 24 hours.');
+            
+            // Reset form
+            event.target.reset();
+            
+            // In a real implementation, this would send the data to a server
+            console.log('Support form submitted:', formObject);
+        }
+    </script>
+</body>
+
+</html>

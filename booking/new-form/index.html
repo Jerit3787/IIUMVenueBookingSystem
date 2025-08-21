@@ -116,12 +116,160 @@
                     </div>
                 </div>
                 <div class="checkout">
-                    <a href="../complete" class="button primary">Submit</a>
+                    <button class="button primary" onclick="submitBooking()">Submit</button>
                     <a href="../select-date/" class="button secondary">Back</a>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        function submitBooking() {
+            // Validate form
+            if (!validateForm()) {
+                return;
+            }
+            
+            // Collect form data
+            const formData = collectFormData();
+            
+            // Store booking data
+            localStorage.setItem('bookingData', JSON.stringify(formData));
+            
+            // Show loading state
+            const submitBtn = document.querySelector('.button.primary');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Submitting...';
+            submitBtn.disabled = true;
+            
+            // Simulate API call
+            setTimeout(() => {
+                // Generate booking ID
+                const bookingId = 'BK' + Date.now().toString().slice(-6);
+                localStorage.setItem('bookingId', bookingId);
+                
+                // Redirect to completion page
+                window.location.href = '../complete/';
+            }, 2000);
+        }
+
+        function validateForm() {
+            const eventName = document.querySelector('input[placeholder*="event"]').value;
+            const organizer = document.querySelector('input[placeholder*="organizer"]').value;
+            const participants = document.querySelector('input[title*="Participants"]').value;
+            const startDate = document.querySelector('input[title*="Start"]').value;
+            const endDate = document.querySelector('input[title*="End"]').value;
+            const letterFile = document.querySelector('input[type="file"]').files[0];
+            const agreement = document.querySelector('input[type="checkbox"]').checked;
+
+            if (!eventName.trim()) {
+                alert('Please enter the event/programme name.');
+                return false;
+            }
+
+            if (!organizer.trim()) {
+                alert('Please enter the organizer name.');
+                return false;
+            }
+
+            if (!participants.trim() || isNaN(participants) || participants <= 0) {
+                alert('Please enter a valid number of participants.');
+                return false;
+            }
+
+            if (!startDate) {
+                alert('Please select a start date and time.');
+                return false;
+            }
+
+            if (!endDate) {
+                alert('Please select an end date and time.');
+                return false;
+            }
+
+            if (new Date(startDate) >= new Date(endDate)) {
+                alert('End date must be after start date.');
+                return false;
+            }
+
+            if (!letterFile) {
+                alert('Please upload the letter of approval.');
+                return false;
+            }
+
+            if (!agreement) {
+                alert('Please confirm that the details are correct and approved.');
+                return false;
+            }
+
+            return true;
+        }
+
+        function collectFormData() {
+            const savedVenue = JSON.parse(localStorage.getItem('selectedVenue') || '{}');
+            const savedTimeSlot = JSON.parse(localStorage.getItem('selectedTimeSlot') || '{}');
+            
+            return {
+                eventName: document.querySelector('input[placeholder*="event"]').value,
+                organizer: document.querySelector('input[placeholder*="organizer"]').value,
+                participants: document.querySelector('input[title*="Participants"]').value,
+                startDateTime: document.querySelector('input[title*="Start"]').value,
+                endDateTime: document.querySelector('input[title*="End"]').value,
+                letterFile: document.querySelector('input[type="file"]').files[0]?.name,
+                venue: savedVenue,
+                timeSlot: savedTimeSlot,
+                submissionDate: new Date().toISOString(),
+                status: 'pending'
+            };
+        }
+
+        function updateVenueDisplay() {
+            const savedVenue = localStorage.getItem('selectedVenue');
+            const savedTimeSlot = localStorage.getItem('selectedTimeSlot');
+            
+            if (savedVenue && savedTimeSlot) {
+                const venueData = JSON.parse(savedVenue);
+                const timeData = JSON.parse(savedTimeSlot);
+                
+                // Update venue display in the summary
+                const venueNameElement = document.querySelector('.cart-name');
+                const venueSizeElement = document.querySelector('.cart-size');
+                const venuePriceElement = document.querySelector('.cart-price');
+                
+                if (venueNameElement) venueNameElement.textContent = venueData.name;
+                if (venueSizeElement) venueSizeElement.textContent = venueData.capacity;
+                if (venuePriceElement) venuePriceElement.textContent = `24/01/2025, ${timeData.time}`;
+            }
+        }
+
+        // Auto-fill form with sample data for demo purposes
+        function autoFillForm() {
+            const eventName = document.querySelector('input[placeholder*="event"]');
+            const organizer = document.querySelector('input[placeholder*="organizer"]');
+            const participants = document.querySelector('input[title*="Participants"]');
+            
+            if (eventName && !eventName.value) eventName.value = 'Annual General Meeting 2025';
+            if (organizer && !organizer.value) organizer.value = 'PEMBINA IIUM Chapter';
+            if (participants && !participants.value) participants.value = '250';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            updateVenueDisplay();
+            autoFillForm();
+            
+            // Add file upload feedback
+            const fileInput = document.querySelector('input[type="file"]');
+            if (fileInput) {
+                fileInput.addEventListener('change', function() {
+                    if (this.files[0]) {
+                        const fileName = this.files[0].name;
+                        console.log('File selected:', fileName);
+                        // You could add visual feedback here
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 
 </html>

@@ -120,10 +120,133 @@
                 </div>
                 <div class="checkout">
                     <a href="../../booking/" class="button primary">Return to Booking</a>
+                    <button class="button secondary" onclick="downloadBookingConfirmation()">Download Confirmation</button>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        function downloadBookingConfirmation() {
+            // Simulate downloading booking confirmation
+            alert('Booking confirmation will be downloaded as PDF.');
+        }
+
+        function updateBookingDetails() {
+            const bookingData = JSON.parse(localStorage.getItem('bookingData') || '{}');
+            const bookingId = localStorage.getItem('bookingId') || 'BK123456';
+            
+            if (Object.keys(bookingData).length > 0) {
+                // Update event details in the table
+                const eventRows = document.querySelectorAll('table tr');
+                
+                eventRows.forEach(row => {
+                    const cells = row.querySelectorAll('td');
+                    if (cells.length >= 2) {
+                        const label = cells[0].textContent.trim();
+                        const valueCell = cells[1];
+                        
+                        switch(label) {
+                            case 'Event Name':
+                                valueCell.textContent = bookingData.eventName || 'Annual General Meeting 2025';
+                                break;
+                            case 'Organizer':
+                                valueCell.textContent = bookingData.organizer || 'PEMBINA IIUM Chapter';
+                                break;
+                            case 'Number of Participants':
+                                valueCell.textContent = bookingData.participants || '250';
+                                break;
+                            case 'Date and Time':
+                                if (bookingData.startDateTime && bookingData.endDateTime) {
+                                    const startDate = new Date(bookingData.startDateTime);
+                                    const endDate = new Date(bookingData.endDateTime);
+                                    const dateStr = startDate.toLocaleDateString('en-GB');
+                                    const timeStr = `${startDate.toLocaleTimeString('en-US', {hour12: true, hour: '2-digit', minute: '2-digit'})} - ${endDate.toLocaleTimeString('en-US', {hour12: true, hour: '2-digit', minute: '2-digit'})}`;
+                                    valueCell.textContent = `${dateStr}, ${timeStr}`;
+                                } else {
+                                    valueCell.textContent = '24/01/2025, 01.00 PM - 06.00 PM';
+                                }
+                                break;
+                            case 'Booking ID':
+                                valueCell.textContent = bookingId;
+                                break;
+                            case 'Status':
+                                valueCell.textContent = 'Pending Approval';
+                                valueCell.className = 'text orange';
+                                break;
+                        }
+                    }
+                });
+
+                // Update venue information
+                if (bookingData.venue && bookingData.venue.name) {
+                    const venueNameElements = document.querySelectorAll('.cart-name');
+                    venueNameElements.forEach(el => {
+                        if (el.textContent.includes('Experimental Hall')) {
+                            el.textContent = bookingData.venue.name;
+                        }
+                    });
+                }
+            }
+
+            // Show success message
+            showSuccessNotification(bookingId);
+        }
+
+        function showSuccessNotification(bookingId) {
+            // Create success notification
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #4CAF50;
+                color: white;
+                padding: 15px 20px;
+                border-radius: 5px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+                z-index: 1000;
+                animation: slideIn 0.3s ease-out;
+            `;
+            notification.innerHTML = `
+                <div style="display: flex; align-items: center;">
+                    <i class="material-symbols-outlined" style="margin-right: 10px;">check_circle</i>
+                    <div>
+                        <strong>Booking Submitted Successfully!</strong><br>
+                        Booking ID: ${bookingId}
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Remove notification after 5 seconds
+            setTimeout(() => {
+                notification.remove();
+            }, 5000);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            updateBookingDetails();
+            
+            // Clear the booking process data after successful submission
+            setTimeout(() => {
+                localStorage.removeItem('selectedVenue');
+                localStorage.removeItem('selectedTimeSlot');
+                localStorage.removeItem('bookingData');
+            }, 10000); // Keep data for 10 seconds for demo purposes
+        });
+
+        // Add CSS for notification animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideIn {
+                from { transform: translateX(100%); opacity: 0; }
+                to { transform: translateX(0); opacity: 1; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
 </body>
 
 </html>
