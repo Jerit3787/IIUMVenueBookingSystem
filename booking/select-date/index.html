@@ -155,16 +155,14 @@
         let selectedDate = null;
 
         function selectTimeSlot(timeElement, timeData) {
-            // Only allow selection of available slots
-            if (timeElement.classList.contains('active') || timeElement.querySelector('.text.red')) {
+            // Only allow selection of available slots (not booked slots)
+            if (timeElement.querySelector('.text.red')) {
                 return; // Don't select booked or unavailable slots
             }
             
             // Remove active class from all time slots
             document.querySelectorAll('.cart-item').forEach(item => {
-                if (!item.querySelector('.text.red')) { // Don't remove from unavailable slots
-                    item.classList.remove('active');
-                }
+                item.classList.remove('active');
             });
             
             // Add active class to selected time slot
@@ -242,6 +240,13 @@
                     
                     item.addEventListener('click', () => selectTimeSlot(item, timeData));
                     item.style.cursor = 'pointer';
+                    
+                    // If this item is already active, initialize the selection
+                    if (item.classList.contains('active')) {
+                        selectedTimeSlot = timeData;
+                        localStorage.setItem('selectedTimeSlot', JSON.stringify(timeData));
+                        document.getElementById('continueBtn').disabled = false;
+                    }
                 }
             });
 
