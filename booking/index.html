@@ -38,26 +38,60 @@
     </div>
 
     <div class="dashboard with-margin">
-        <div class="booking-header">
-            <h2>Venue Bookings</h2>
-            <p>Manage your venue bookings and create new reservations</p>
+        <div class="booking-hero">
+            <div class="booking-hero-content">
+                <div class="hero-left">
+                    <h1>My Bookings</h1>
+                    <p class="hero-subtitle">Manage your venue reservations and track event progress</p>
+                    <div class="quick-stats">
+                        <div class="quick-stat">
+                            <span class="stat-number">2</span>
+                            <span class="stat-label">Active</span>
+                        </div>
+                        <div class="quick-stat">
+                            <span class="stat-number">1</span>
+                            <span class="stat-label">Pending</span>
+                        </div>
+                        <div class="quick-stat">
+                            <span class="stat-number">5</span>
+                            <span class="stat-label">Total</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-right">
+                    <a href="./select-venue/" class="button primary large hero-cta">
+                        <i class="material-symbols-outlined">add_circle</i>
+                        New Booking
+                    </a>
+                </div>
+            </div>
         </div>
 
-        <div class="booking-actions">
-            <a href="./select-venue/" class="button primary large">
-                <i class="material-symbols-outlined">add</i>
-                New Booking
-            </a>
-            <button class="button secondary" onclick="refreshBookings()">
-                <i class="material-symbols-outlined">refresh</i>
-                Refresh
-            </button>
-        </div>
-
-        <div class="booking-tabs">
-            <button class="tab-button active" onclick="showTab('current')">Current Bookings</button>
-            <button class="tab-button" onclick="showTab('pending')">Pending Approval</button>
-            <button class="tab-button" onclick="showTab('history')">Booking History</button>
+        <div class="booking-controls">
+            <div class="booking-tabs">
+                <button class="tab-button active" onclick="showTab('current')">
+                    <i class="material-symbols-outlined">event_available</i>
+                    Current Bookings
+                </button>
+                <button class="tab-button" onclick="showTab('pending')">
+                    <i class="material-symbols-outlined">schedule</i>
+                    Pending Approval
+                </button>
+                <button class="tab-button" onclick="showTab('history')">
+                    <i class="material-symbols-outlined">history</i>
+                    Booking History
+                </button>
+            </div>
+            <div class="booking-actions">
+                <button class="button secondary" onclick="refreshBookings()">
+                    <i class="material-symbols-outlined">refresh</i>
+                    Refresh
+                </button>
+                <button class="button secondary" onclick="exportBookings()">
+                    <i class="material-symbols-outlined">download</i>
+                    Export
+                </button>
+            </div>
         </div>
 
         <div id="current-tab" class="tab-content active">
@@ -231,6 +265,11 @@
 
         function rebookVenue(bookingId) {
             window.location.href = './select-venue/';
+        }
+
+        function exportBookings() {
+            alert('Exporting booking data...');
+            // In a real implementation, this would export booking data
         }
     </script>
 </body>

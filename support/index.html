@@ -37,30 +37,57 @@
         </div>
     </div>
 
-    <div class="dashboard with-margin">
-        <div class="support-header">
-            <h2>Support Center</h2>
-            <p>Get help with your venue booking questions and technical issues</p>
+    <div class="support-container">
+        <div class="support-hero">
+            <div class="support-hero-content">
+                <div class="hero-icon">
+                    <i class="material-symbols-outlined">support_agent</i>
+                </div>
+                <h1>How can we help you?</h1>
+                <p class="hero-subtitle">Find answers, get support, or contact our team</p>
+                <div class="support-search">
+                    <div class="search-box large">
+                        <i class="material-symbols-outlined">search</i>
+                        <input type="text" placeholder="Search for help topics..." onkeyup="searchHelp(this.value)">
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <div class="support-options">
-            <div class="support-card">
-                <i class="material-symbols-outlined">help</i>
-                <h3>Frequently Asked Questions</h3>
-                <p>Find answers to common questions about venue booking</p>
-                <button class="button secondary" onclick="showFAQ()">View FAQ</button>
-            </div>
-            <div class="support-card">
-                <i class="material-symbols-outlined">email</i>
-                <h3>Contact Support</h3>
-                <p>Send us a message and we'll get back to you within 24 hours</p>
-                <button class="button secondary" onclick="showContactForm()">Contact Us</button>
-            </div>
-            <div class="support-card">
-                <i class="material-symbols-outlined">phone</i>
-                <h3>Call Support</h3>
-                <p>Speak directly with our support team during office hours</p>
-                <a href="tel:+60361964000" class="button secondary">Call Now</a>
+        <div class="support-content">
+            <div class="support-grid">
+                <div class="support-card primary">
+                    <div class="card-icon">
+                        <i class="material-symbols-outlined">help_center</i>
+                    </div>
+                    <h3>Help Center</h3>
+                    <p>Browse our comprehensive FAQ and guides</p>
+                    <button class="button secondary" onclick="showFAQ()">Browse FAQ</button>
+                </div>
+                <div class="support-card secondary">
+                    <div class="card-icon">
+                        <i class="material-symbols-outlined">chat</i>
+                    </div>
+                    <h3>Live Chat</h3>
+                    <p>Chat with our support team in real-time</p>
+                    <button class="button secondary" onclick="startChat()">Start Chat</button>
+                </div>
+                <div class="support-card accent">
+                    <div class="card-icon">
+                        <i class="material-symbols-outlined">call</i>
+                    </div>
+                    <h3>Phone Support</h3>
+                    <p>Call us during business hours</p>
+                    <a href="tel:+60361964000" class="button secondary">Call Now</a>
+                </div>
+                <div class="support-card neutral">
+                    <div class="card-icon">
+                        <i class="material-symbols-outlined">mail</i>
+                    </div>
+                    <h3>Email Support</h3>
+                    <p>Send us a detailed message</p>
+                    <button class="button secondary" onclick="showContactForm()">Send Email</button>
+                </div>
             </div>
         </div>
 
@@ -239,6 +266,26 @@
     </div>
 
     <script>
+        function searchHelp(query) {
+            // Filter FAQ items based on search query
+            const faqItems = document.querySelectorAll('.faq-item');
+            const searchTerm = query.toLowerCase();
+            
+            faqItems.forEach(item => {
+                const questionText = item.querySelector('.faq-question').textContent.toLowerCase();
+                const answerText = item.querySelector('.faq-answer').textContent.toLowerCase();
+                
+                if (questionText.includes(searchTerm) || answerText.includes(searchTerm)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = searchTerm === '' ? 'block' : 'none';
+                }
+            });
+        }
+
+        function startChat() {
+            alert('Live chat feature coming soon! Please use email or phone support for immediate assistance.');
+        }
         function showFAQ() {
             document.getElementById('faq-section').scrollIntoView({ behavior: 'smooth' });
         }
