@@ -34,12 +34,12 @@
             </div>
             <div class="progress-line"></div>
             <div class="progress-container">
-                <span class="progress-indicator">2</span>
+                <span class="progress-indicator">3</span>
                 <p class="progress-text">Event Details</p>
             </div>
             <div class="progress-line"></div>
             <div class="progress-container">
-                <span class="progress-indicator">3</span>
+                <span class="progress-indicator">4</span>
                 <p class="progress-text">Complete Order</p>
             </div>
         </div>
@@ -119,7 +119,7 @@
             <div class="calendar-right">
                 <p class="text bold">Available Times</p>
                 <div class="cart">
-                    <div class="cart-item">
+                    <div class="cart-item disabled">
                         <div class="cart-image">
                             <i class="material-symbols-outlined">room_preferences</i>
                         </div>
@@ -155,9 +155,9 @@
         let selectedDate = null;
 
         function selectTimeSlot(timeElement, timeData) {
-            // Only allow selection of available slots (not booked slots)
-            if (timeElement.querySelector('.text.red')) {
-                return; // Don't select booked or unavailable slots
+            // Only allow selection of available slots (not booked or disabled slots)
+            if (timeElement.querySelector('.text.red') || timeElement.classList.contains('disabled')) {
+                return; // Don't select booked, unavailable, or disabled slots
             }
             
             // Remove active class from all time slots
@@ -231,7 +231,7 @@
                 const timeText = item.querySelector('.cart-price')?.textContent;
                 const statusText = item.querySelector('.cart-quantity')?.textContent;
                 
-                if (timeText && statusText === 'Available') {
+                if (timeText && statusText === 'Available' && !item.classList.contains('disabled')) {
                     const timeData = {
                         id: index + 1,
                         time: timeText,
